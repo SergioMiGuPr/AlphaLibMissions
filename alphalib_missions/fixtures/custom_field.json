@@ -7,7 +7,9 @@
   "fieldtype": "Section Break",
   "insert_after": "tax_id",
   "collapsible": 0,
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_sb_identite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -19,7 +21,9 @@
   "insert_after": "lm_sb_identite",
   "reqd": 0,
   "description": "Apparait entre parentheses apres la denomination sur la lettre de mission.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-forme_juridique",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -30,7 +34,9 @@
   "length": 11,
   "insert_after": "forme_juridique",
   "description": "9 chiffres. Format d affichage : 940 241 995.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-siren",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -39,7 +45,9 @@
   "label": "Ville du RCS",
   "fieldtype": "Data",
   "insert_after": "siren",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rcs_ville",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -49,7 +57,9 @@
   "fieldtype": "Data",
   "length": 6,
   "insert_after": "rcs_ville",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-code_ape",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -57,7 +67,9 @@
   "fieldname": "lm_cb_identite",
   "fieldtype": "Column Break",
   "insert_after": "code_ape",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_cb_identite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -67,7 +79,9 @@
   "fieldtype": "Int",
   "insert_after": "lm_cb_identite",
   "description": "Ex. 31",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-cloture_jour",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -77,7 +91,9 @@
   "fieldtype": "Select",
   "options": "\njanvier\nfevrier\nmars\navril\nmai\njuin\njuillet\naout\nseptembre\noctobre\nnovembre\ndecembre",
   "insert_after": "cloture_jour",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-cloture_mois",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -86,7 +102,9 @@
   "label": "Capital social",
   "fieldtype": "Currency",
   "insert_after": "cloture_mois",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-capital_social",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -95,7 +113,9 @@
   "label": "Activite et organisation",
   "fieldtype": "Section Break",
   "insert_after": "capital_social",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_sb_activite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -105,7 +125,9 @@
   "fieldtype": "Small Text",
   "insert_after": "lm_sb_activite",
   "description": "Phrase reprise telle quelle dans le paragraphe 1 de la lettre de mission.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-activite_principale",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -115,7 +137,9 @@
   "fieldtype": "Select",
   "options": "\ncommerciale\nartisanale\nliberale\nagricole\nindustrielle\ncivile",
   "insert_after": "activite_principale",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-nature_activite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -123,7 +147,9 @@
   "fieldname": "lm_cb_activite",
   "fieldtype": "Column Break",
   "insert_after": "nature_activite",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_cb_activite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -133,7 +159,9 @@
   "fieldtype": "Int",
   "insert_after": "lm_cb_activite",
   "description": "0 est imprime sous la forme : neant.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-effectif_personnel",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -143,7 +171,9 @@
   "fieldtype": "Select",
   "options": "\ninternalisee en totalite\ninternalisee partiellement\nexternalisee en totalite",
   "insert_after": "effectif_personnel",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-organisation_comptable",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -152,7 +182,9 @@
   "label": "Representant legal",
   "fieldtype": "Section Break",
   "insert_after": "organisation_comptable",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_sb_representant",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -162,7 +194,9 @@
   "fieldtype": "Select",
   "options": "\nMonsieur\nMadame",
   "insert_after": "lm_sb_representant",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_civilite",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -171,7 +205,9 @@
   "label": "Prenom",
   "fieldtype": "Data",
   "insert_after": "rep_civilite",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_prenom",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -181,7 +217,9 @@
   "fieldtype": "Data",
   "insert_after": "rep_prenom",
   "description": "Saisir en majuscules, il est imprime tel quel.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_nom",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -191,7 +229,9 @@
   "fieldtype": "Data",
   "insert_after": "rep_nom",
   "default": "President",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_fonction",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -199,7 +239,9 @@
   "fieldname": "lm_cb_representant",
   "fieldtype": "Column Break",
   "insert_after": "rep_fonction",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_cb_representant",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -210,7 +252,9 @@
   "options": "Email",
   "insert_after": "lm_cb_representant",
   "description": "Adresse utilisee pour la demande de signature electronique.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_email",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -221,7 +265,9 @@
   "options": "Phone",
   "insert_after": "rep_email",
   "description": "Format international requis pour l OTP SMS. Ex. +33612345678",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-rep_mobile",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -232,7 +278,9 @@
   "insert_after": "rep_mobile",
   "collapsible": 1,
   "description": "Condition suspensive a la mise en oeuvre de la mission (paragraphe 2.7 de la lettre de mission).",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lm_sb_lcbft",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -241,7 +289,9 @@
   "label": "Piece d identite du representant recue",
   "fieldtype": "Check",
   "insert_after": "lm_sb_lcbft",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lcbft_piece_identite_recue",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -250,7 +300,9 @@
   "label": "Extrait de registre officiel de moins de 3 mois recu",
   "fieldtype": "Check",
   "insert_after": "lcbft_piece_identite_recue",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lcbft_kbis_recu",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -259,7 +311,9 @@
   "label": "Beneficiaire(s) effectif(s)",
   "fieldtype": "Small Text",
   "insert_after": "lcbft_kbis_recu",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lcbft_beneficiaire_effectif",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -268,7 +322,9 @@
   "label": "Date de verification",
   "fieldtype": "Date",
   "insert_after": "lcbft_beneficiaire_effectif",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lcbft_date_verification",
+  "modified": "2026-09-11 10:00:00.000000"
  },
  {
   "doctype": "Custom Field",
@@ -279,6 +335,8 @@
   "read_only": 1,
   "insert_after": "lcbft_date_verification",
   "description": "Calcule automatiquement. Bloque la soumission de la lettre de mission tant qu il est decoche.",
-  "module": "AlphaLib Missions"
+  "module": "AlphaLib Missions",
+  "name": "Customer-lcbft_complet",
+  "modified": "2026-09-11 10:00:00.000000"
  }
 ]
