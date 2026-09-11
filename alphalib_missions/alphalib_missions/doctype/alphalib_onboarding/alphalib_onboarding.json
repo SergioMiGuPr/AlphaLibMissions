@@ -1,0 +1,96 @@
+{
+ "name": "AlphaLib Onboarding",
+ "doctype": "DocType",
+ "module": "AlphaLib Missions",
+ "custom": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "user",
+  "cb1",
+  "etape_courante",
+  "statut",
+  "sb1",
+  "date_debut",
+  "cb2",
+  "date_fin"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "label": "Client",
+   "fieldtype": "Link",
+   "options": "Customer",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "user",
+   "label": "Utilisateur",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "etape_courante",
+   "label": "Étape courante",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "options": "societe\nactivite\nrepresentant\njustificatifs\nrelecture\nsignature\ntermine",
+   "default": "societe"
+  },
+  {
+   "fieldname": "statut",
+   "label": "Statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "options": "En cours\nEn attente cabinet\nLettre envoyée\nTerminé\nAbandonné",
+   "default": "En cours"
+  },
+  {
+   "fieldname": "sb1",
+   "label": "Horodatage",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "date_debut",
+   "label": "Début",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_fin",
+   "label": "Fin",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "modified": "2026-09-11 10:00:00.000000",
+ "autoname": "field:customer",
+ "track_changes": 1
+}

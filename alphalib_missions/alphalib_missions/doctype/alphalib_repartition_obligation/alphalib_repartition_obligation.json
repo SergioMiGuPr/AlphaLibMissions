@@ -1,0 +1,79 @@
+{
+ "name": "AlphaLib Repartition Obligation",
+ "doctype": "DocType",
+ "module": "AlphaLib Missions",
+ "custom": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "libelle",
+  "est_titre",
+  "cabinet",
+  "client",
+  "autres",
+  "periodicite"
+ ],
+ "fields": [
+  {
+   "fieldname": "libelle",
+   "label": "Nature de l'obligation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "columns": 5,
+   "reqd": 1
+  },
+  {
+   "fieldname": "est_titre",
+   "label": "Ligne de rubrique",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Coché : ligne de titre affichée en gras sur toute la largeur."
+  },
+  {
+   "fieldname": "cabinet",
+   "label": "Cabinet",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "client",
+   "label": "Client",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "autres",
+   "label": "Autres",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "periodicite",
+   "label": "Périodicité",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "columns": 2,
+   "options": "\nMensuelle\nTrimestrielle\nAnnuelle\nPonctuelle\nNon définie"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "modified": "2026-09-11 10:00:00.000000",
+ "istable": 1,
+ "editable_grid": 1
+}

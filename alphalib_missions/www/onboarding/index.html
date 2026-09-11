@@ -1,0 +1,404 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_content %}
+<style>
+  .tunnel {
+    --encre: #16202b;
+    --ardoise: #5b6b7c;
+    --papier: #ffffff;
+    --trait: #dde3e9;
+    --fond: #f6f8fa;
+    --accent: #1d4e89;
+    --valide: #1f7a5c;
+
+    display: grid;
+    grid-template-columns: 268px 1fr;
+    min-height: 100vh;
+    margin: -20px -15px;
+    font-family: Inter, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--encre);
+    background: var(--papier);
+  }
+
+  /* ---- rail des etapes ---- */
+  .tunnel__rail {
+    background: var(--fond);
+    border-right: 1px solid var(--trait);
+    padding: 40px 28px;
+  }
+  .tunnel__marque { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .tunnel__sous { font-size: 13px; color: var(--ardoise); margin-bottom: 40px; }
+
+  .etapes { list-style: none; margin: 0; padding: 0; position: relative; }
+  .etapes::before {
+    content: ""; position: absolute; left: 11px; top: 12px; bottom: 12px;
+    width: 2px; background: var(--trait);
+  }
+  .etape {
+    position: relative; padding: 0 0 26px 36px;
+    font-size: 13.5px; color: var(--ardoise); line-height: 1.35;
+  }
+  .etape__puce {
+    position: absolute; left: 0; top: -1px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--papier); border: 2px solid var(--trait);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;
+    color: var(--ardoise);
+  }
+  .etape--faite .etape__puce {
+    background: var(--valide); border-color: var(--valide); color: #fff;
+  }
+  .etape--active { color: var(--encre); font-weight: 600; }
+  .etape--active .etape__puce {
+    border-color: var(--accent); color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(29, 78, 137, .12);
+  }
+
+  /* ---- contenu ---- */
+  .tunnel__vue { padding: 56px 64px; max-width: 660px; }
+  .tunnel__vue h1 { font-size: 25px; font-weight: 600; margin: 0 0 8px; letter-spacing: -.01em; }
+  .tunnel__intro { font-size: 15px; color: var(--ardoise); margin-bottom: 34px; max-width: 56ch; }
+
+  .champ { margin-bottom: 20px; }
+  .champ label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  .champ input, .champ select, .champ textarea {
+    width: 100%; padding: 9px 12px; font-size: 14.5px; font-family: inherit;
+    border: 1px solid var(--trait); border-radius: 6px; background: var(--papier);
+    color: var(--encre);
+  }
+  .champ input:focus, .champ select:focus, .champ textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, .12);
+  }
+  .champ--siren input { font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+  .champ__aide { font-size: 12.5px; color: var(--ardoise); margin-top: 5px; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .barre { display: flex; gap: 12px; align-items: center; margin-top: 36px; }
+  .btn {
+    padding: 10px 20px; font-size: 14.5px; font-family: inherit; font-weight: 500;
+    border-radius: 6px; border: 1px solid transparent; cursor: pointer;
+  }
+  .btn--primaire { background: var(--accent); color: #fff; }
+  .btn--primaire:hover { background: #17406f; }
+  .btn--discret { background: transparent; color: var(--ardoise); border-color: var(--trait); }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+  .encart {
+    border: 1px solid var(--trait); border-radius: 8px;
+    padding: 18px 20px; font-size: 14px; color: var(--ardoise); line-height: 1.5;
+  }
+  .secours { margin-top: 44px; font-size: 13px; color: var(--ardoise); }
+  .secours a { color: var(--accent); }
+
+  .vue { display: none; }
+  .vue--active { display: block; }
+
+  @media (max-width: 860px) {
+    .tunnel { grid-template-columns: 1fr; }
+    .tunnel__rail { display: none; }
+    .tunnel__vue { padding: 32px 22px; }
+    .duo { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="tunnel">
+
+  <aside class="tunnel__rail">
+    <div class="tunnel__marque">Alpha Leonis</div>
+    <div class="tunnel__sous">Ouverture de votre dossier</div>
+    <ol class="etapes" id="rail">
+      <li class="etape" data-etape="societe"><span class="etape__puce">1</span>Votre société</li>
+      <li class="etape" data-etape="activite"><span class="etape__puce">2</span>Votre activité</li>
+      <li class="etape" data-etape="representant"><span class="etape__puce">3</span>Votre représentant légal</li>
+      <li class="etape" data-etape="justificatifs"><span class="etape__puce">4</span>Vos justificatifs</li>
+      <li class="etape" data-etape="relecture"><span class="etape__puce">5</span>Votre lettre de mission</li>
+      <li class="etape" data-etape="signature"><span class="etape__puce">6</span>Signature</li>
+    </ol>
+  </aside>
+
+  <main class="tunnel__vue">
+
+    <!-- 1 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="societe">
+      <h1>Votre société</h1>
+      <p class="tunnel__intro">Saisissez votre numéro SIREN, nous récupérons le reste
+      auprès du répertoire Sirene. Vous pourrez corriger si besoin.</p>
+
+      <div class="champ champ--siren">
+        <label for="siren">Numéro SIREN</label>
+        <input id="siren" name="siren" maxlength="11" inputmode="numeric"
+               placeholder="940 241 995" value="{{ customer.siren or '' }}">
+        <div class="champ__aide" id="siren-etat">9 chiffres, sans le NIC.</div>
+      </div>
+
+      <div class="champ">
+        <label for="customer_name">Dénomination sociale</label>
+        <input id="customer_name" name="customer_name" value="{{ customer.customer_name or '' }}">
+      </div>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="forme_juridique">Forme juridique</label>
+          <select id="forme_juridique" name="forme_juridique">
+            <option value=""></option>
+            {% for f in ["SAS","SASU","SARL","EURL","SA","SCI","SNC","SELARL","EI","Micro-entreprise","Association","Autre"] %}
+            <option value="{{ f }}" {% if customer.forme_juridique == f %}selected{% endif %}>{{ f }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="champ">
+          <label for="rcs_ville">Ville du RCS</label>
+          <input id="rcs_ville" name="rcs_ville" value="{{ customer.rcs_ville or '' }}">
+        </div>
+      </div>
+
+      <div class="barre">
+        <button class="btn btn--primaire" data-suivant="societe">Continuer</button>
+      </div>
+    </section>
+
+    <!-- 2 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="activite">
+      <h1>Votre activité</h1>
+      <p class="tunnel__intro">Ces éléments figureront au paragraphe 1 de votre lettre
+      de mission. Décrivez votre activité dans vos propres termes.</p>
+
+      <div class="champ">
+        <label for="activite_principale">Activité(s) principale(s)</label>
+        <textarea id="activite_principale" name="activite_principale" rows="3">{{ customer.activite_principale or '' }}</textarea>
+      </div>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="cloture_jour">Jour de clôture</label>
+          <input id="cloture_jour" name="cloture_jour" type="number" min="1" max="31"
+                 value="{{ customer.cloture_jour or 31 }}">
+        </div>
+        <div class="champ">
+          <label for="cloture_mois">Mois de clôture</label>
+          <select id="cloture_mois" name="cloture_mois">
+            {% for m in ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"] %}
+            <option value="{{ m }}" {% if customer.cloture_mois == m %}selected{% endif %}>{{ m }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="effectif_personnel">Effectif du personnel</label>
+          <input id="effectif_personnel" name="effectif_personnel" type="number" min="0"
+                 value="{{ customer.effectif_personnel or 0 }}">
+          <div class="champ__aide">0 sera imprimé « néant ».</div>
+        </div>
+        <div class="champ">
+          <label for="organisation_comptable">Organisation comptable</label>
+          <select id="organisation_comptable" name="organisation_comptable">
+            {% for o in ["internalisée en totalité","internalisée partiellement","externalisée en totalité"] %}
+            <option value="{{ o }}" {% if customer.organisation_comptable == o %}selected{% endif %}>{{ o }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="barre">
+        <button class="btn btn--discret" data-retour>Retour</button>
+        <button class="btn btn--primaire" data-suivant="activite">Continuer</button>
+      </div>
+    </section>
+
+    <!-- 3 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="representant">
+      <h1>Votre représentant légal</h1>
+      <p class="tunnel__intro">La personne qui signera la lettre de mission. Le mobile
+      sert à recevoir le code de signature par SMS.</p>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="rep_civilite">Civilité</label>
+          <select id="rep_civilite" name="rep_civilite">
+            <option value="Monsieur" {% if customer.rep_civilite == "Monsieur" %}selected{% endif %}>Monsieur</option>
+            <option value="Madame" {% if customer.rep_civilite == "Madame" %}selected{% endif %}>Madame</option>
+          </select>
+        </div>
+        <div class="champ">
+          <label for="rep_fonction">Fonction</label>
+          <input id="rep_fonction" name="rep_fonction" value="{{ customer.rep_fonction or 'Président' }}">
+        </div>
+      </div>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="rep_prenom">Prénom</label>
+          <input id="rep_prenom" name="rep_prenom" value="{{ customer.rep_prenom or '' }}">
+        </div>
+        <div class="champ">
+          <label for="rep_nom">Nom</label>
+          <input id="rep_nom" name="rep_nom" value="{{ customer.rep_nom or '' }}">
+        </div>
+      </div>
+
+      <div class="duo">
+        <div class="champ">
+          <label for="rep_email">Adresse e-mail</label>
+          <input id="rep_email" name="rep_email" type="email" value="{{ customer.rep_email or '' }}">
+        </div>
+        <div class="champ">
+          <label for="rep_mobile">Téléphone mobile</label>
+          <input id="rep_mobile" name="rep_mobile" placeholder="+33 6 12 34 56 78"
+                 value="{{ customer.rep_mobile or '' }}">
+        </div>
+      </div>
+
+      <div class="barre">
+        <button class="btn btn--discret" data-retour>Retour</button>
+        <button class="btn btn--primaire" data-suivant="representant">Continuer</button>
+      </div>
+    </section>
+
+    <!-- 4 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="justificatifs">
+      <h1>Vos justificatifs</h1>
+      <p class="tunnel__intro">La réglementation anti-blanchiment nous oblige à recueillir
+      ces deux pièces avant de démarrer la mission. Elles restent dans votre espace
+      documentaire.</p>
+
+      <div class="champ">
+        <label>Pièce d'identité du représentant légal</label>
+        <input type="file" data-depot="piece_identite" accept="image/*,.pdf">
+        <div class="champ__aide">Carte d'identité ou passeport en cours de validité.</div>
+      </div>
+
+      <div class="champ">
+        <label>Extrait de registre officiel</label>
+        <input type="file" data-depot="kbis" accept="image/*,.pdf">
+        <div class="champ__aide">Kbis de moins de trois mois.</div>
+      </div>
+
+      <div class="barre">
+        <button class="btn btn--discret" data-retour>Retour</button>
+        <button class="btn btn--primaire" data-suivant="justificatifs">Continuer</button>
+      </div>
+    </section>
+
+    <!-- 5 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="relecture">
+      <h1>Votre lettre de mission</h1>
+      {% if lettre %}
+      <p class="tunnel__intro">Voici votre lettre de mission, complétée avec les
+      informations que vous venez de saisir. Prenez le temps de la lire, ainsi que ses
+      deux annexes.</p>
+      <iframe src="/api/method/frappe.utils.print_format.download_pdf?doctype=AlphaLib%20Lettre%20Mission&name={{ lettre.name }}&format=AlphaLib%20Lettre%20Mission"
+              style="width:100%;height:520px;border:1px solid var(--trait);border-radius:8px"></iframe>
+      <div class="barre">
+        <button class="btn btn--discret" data-retour>Retour</button>
+        <button class="btn btn--primaire" data-suivant="relecture">J'ai lu la lettre et ses annexes</button>
+      </div>
+      {% else %}
+      <div class="encart">
+        Vos informations sont enregistrées. Votre expert-comptable finalise votre lettre
+        de mission, vous recevrez un e-mail dès qu'elle sera prête à signer.
+      </div>
+      {% endif %}
+    </section>
+
+    <!-- 6 ------------------------------------------------------------- -->
+    <section class="vue" data-vue="signature">
+      <h1>Signature</h1>
+      <p class="tunnel__intro">Vous allez recevoir un code par SMS au numéro indiqué.
+      La signature est réalisée par notre prestataire certifié eIDAS.</p>
+      <div id="cadre-signature" class="encart">Préparation de la signature…</div>
+    </section>
+
+    <p class="secours">
+      Une question sur ce document&nbsp;? <a href="/contact">Écrivez-nous</a> ou appelez
+      le 06&nbsp;82&nbsp;70&nbsp;46&nbsp;40 avant de signer.
+    </p>
+
+  </main>
+</div>
+
+<script>
+frappe.ready(function () {
+  var etapes = {{ etapes | tojson }};
+  var courante = "{{ suivi.etape_courante }}";
+
+  function afficher(etape) {
+    courante = etape;
+    document.querySelectorAll(".vue").forEach(function (v) {
+      v.classList.toggle("vue--active", v.dataset.vue === etape);
+    });
+    var index = etapes.indexOf(etape);
+    document.querySelectorAll(".etape").forEach(function (li, i) {
+      li.classList.toggle("etape--active", i === index);
+      li.classList.toggle("etape--faite", i < index);
+      li.querySelector(".etape__puce").textContent = i < index ? "\u2713" : (i + 1);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function valeurs(vue) {
+    var out = {};
+    vue.querySelectorAll("[name]").forEach(function (el) { out[el.name] = el.value; });
+    return out;
+  }
+
+  document.querySelectorAll("[data-suivant]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var etape = btn.dataset.suivant;
+      var vue = document.querySelector('[data-vue="' + etape + '"]');
+      btn.disabled = true;
+      frappe.call({
+        method: "alphalib_missions.onboarding.gate.enregistrer_etape",
+        args: { etape: etape, valeurs: JSON.stringify(valeurs(vue)) },
+        callback: function (r) {
+          btn.disabled = false;
+          if (r.message) afficher(r.message.etape_suivante);
+        },
+        error: function () { btn.disabled = false; }
+      });
+    });
+  });
+
+  document.querySelectorAll("[data-retour]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var i = etapes.indexOf(courante);
+      if (i > 0) afficher(etapes[i - 1]);
+    });
+  });
+
+  // Pre-remplissage depuis le repertoire Sirene
+  var siren = document.getElementById("siren");
+  if (siren) {
+    siren.addEventListener("blur", function () {
+      var v = siren.value.replace(/\s/g, "");
+      if (v.length !== 9) return;
+      document.getElementById("siren-etat").textContent = "Recherche en cours\u2026";
+      frappe.call({
+        method: "alphalib_missions.onboarding.sirene.rechercher",
+        args: { siren: v },
+        callback: function (r) {
+          var d = r.message;
+          if (!d) {
+            document.getElementById("siren-etat").textContent =
+              "Aucune entreprise trouvée, saisissez les informations manuellement.";
+            return;
+          }
+          ["customer_name", "forme_juridique", "rcs_ville"].forEach(function (k) {
+            var el = document.getElementById(k);
+            if (el && d[k] && !el.value) el.value = d[k];
+          });
+          document.getElementById("siren-etat").textContent = d.customer_name;
+        }
+      });
+    });
+  }
+
+  afficher(courante);
+});
+</script>
+{% endblock %}

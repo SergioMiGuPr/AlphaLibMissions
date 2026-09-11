@@ -1,0 +1,369 @@
+{
+ "name": "AlphaLib Lettre Mission",
+ "doctype": "DocType",
+ "module": "AlphaLib Missions",
+ "custom": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "customer",
+  "adresse_siege",
+  "cb1",
+  "company",
+  "intitule_mission",
+  "sb_lieu",
+  "lieu_redaction",
+  "date_lettre",
+  "cb2",
+  "exercice_clos_le",
+  "sb_periode",
+  "mission_du",
+  "mission_au",
+  "cb3",
+  "expert_comptable",
+  "expert_comptable_nom",
+  "sb_honoraires",
+  "honoraires_mensuel_ht",
+  "honoraires_a_compter_du",
+  "cb4",
+  "honoraires_annuel_ht",
+  "forfait_juridique_annuel_ht",
+  "sb_prestations",
+  "detail_prestations",
+  "sb_clauses",
+  "missions_complementaires",
+  "derogations_cg",
+  "cb5",
+  "conditions_generales",
+  "sb_annexe2",
+  "repartition_obligations",
+  "sb_signature",
+  "statut",
+  "signature_request_id",
+  "signer_id",
+  "cb6",
+  "signature_cabinet",
+  "date_signature_cabinet",
+  "signature_client",
+  "date_signature_client",
+  "sb_preuve",
+  "pdf_signe",
+  "cb7",
+  "dossier_preuve",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Série",
+   "fieldtype": "Select",
+   "options": "LM-.YYYY.-.####",
+   "default": "LM-.YYYY.-.####",
+   "reqd": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "customer",
+   "label": "Client",
+   "fieldtype": "Link",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "adresse_siege",
+   "label": "Adresse du siège",
+   "fieldtype": "Link",
+   "options": "Address"
+  },
+  {
+   "fieldname": "cb1",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "label": "Entité émettrice",
+   "fieldtype": "Link",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "intitule_mission",
+   "label": "Intitulé de la mission",
+   "fieldtype": "Data",
+   "default": "comptabilité - juridique",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sb_lieu",
+   "label": "Lieu et date",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lieu_redaction",
+   "label": "Lieu de rédaction",
+   "fieldtype": "Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_lettre",
+   "label": "Date de la lettre",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb2",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exercice_clos_le",
+   "label": "Exercice clos le",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sb_periode",
+   "label": "Période de la mission",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "mission_du",
+   "label": "Du",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mission_au",
+   "label": "Au",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb3",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expert_comptable",
+   "label": "Expert-comptable responsable",
+   "fieldtype": "Link",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "expert_comptable_nom",
+   "label": "Nom imprimé",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "fetch_from": "expert_comptable.employee_name"
+  },
+  {
+   "fieldname": "sb_honoraires",
+   "label": "Honoraires",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "honoraires_mensuel_ht",
+   "label": "Honoraires mensuels HT",
+   "fieldtype": "Currency",
+   "reqd": 1,
+   "default": "350"
+  },
+  {
+   "fieldname": "honoraires_a_compter_du",
+   "label": "À compter du",
+   "fieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb4",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "honoraires_annuel_ht",
+   "label": "Honoraires annuels HT",
+   "fieldtype": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "forfait_juridique_annuel_ht",
+   "label": "Forfait juridique annuel HT",
+   "fieldtype": "Currency",
+   "default": "500"
+  },
+  {
+   "fieldname": "sb_prestations",
+   "label": "",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "detail_prestations",
+   "label": "Détail des prestations",
+   "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "sb_clauses",
+   "label": "Clauses",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "missions_complementaires",
+   "label": "Missions complémentaires",
+   "fieldtype": "Small Text",
+   "default": "Néant"
+  },
+  {
+   "fieldname": "derogations_cg",
+   "label": "Dérogations aux conditions générales",
+   "fieldtype": "Small Text",
+   "description": "Laisser vide pour imprimer la clause standard « aucune dérogation »."
+  },
+  {
+   "fieldname": "cb5",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "conditions_generales",
+   "label": "Conditions générales",
+   "fieldtype": "Link",
+   "options": "Terms and Conditions",
+   "reqd": 1,
+   "description": "Version des CG annexée. Ne jamais modifier après signature : créer une nouvelle version."
+  },
+  {
+   "fieldname": "sb_annexe2",
+   "label": "Annexe 2 — répartition des obligations",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "repartition_obligations",
+   "label": "Répartition",
+   "fieldtype": "Table",
+   "options": "AlphaLib Repartition Obligation"
+  },
+  {
+   "fieldname": "sb_signature",
+   "label": "Signature",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "statut",
+   "label": "Statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "options": "Brouillon\nEn attente de signature\nSignée\nRefusée\nExpirée",
+   "default": "Brouillon"
+  },
+  {
+   "fieldname": "signature_request_id",
+   "label": "Identifiant de la demande",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "signer_id",
+   "label": "Identifiant du signataire",
+   "fieldtype": "Data",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "cb6",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "signature_cabinet",
+   "label": "Signature du cabinet",
+   "fieldtype": "Attach Image",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "date_signature_cabinet",
+   "label": "Date de signature cabinet",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "signature_client",
+   "label": "Signature du client",
+   "fieldtype": "Attach Image",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "date_signature_client",
+   "label": "Date de signature client",
+   "fieldtype": "Datetime",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "sb_preuve",
+   "label": "Pièces signées",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pdf_signe",
+   "label": "PDF signé",
+   "fieldtype": "Attach",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "cb7",
+   "label": "",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dossier_preuve",
+   "label": "Dossier de preuve",
+   "fieldtype": "Attach",
+   "read_only": 1,
+   "allow_on_submit": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "label": "Amended From",
+   "fieldtype": "Link",
+   "options": "AlphaLib Lettre Mission",
+   "no_copy": 1,
+   "read_only": 1,
+   "print_hide": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "print": 1,
+   "email": 1
+  },
+  {
+   "role": "Customer",
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "modified": "2026-09-11 10:00:00.000000",
+ "autoname": "naming_series:",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "title_field": "customer"
+}
